@@ -1,0 +1,114 @@
+Measurement
+===========
+1. Sales Transaction
+	-> Total Earning = SUM(Quantity * GoodsSellingPrice)
+	-> Total Goods Sold = SUM(Quantity)
+2. Purchase Transaction
+	-> Total Purchase Cost = SUM(Quantity * GoodsBuyingPrice)
+	-> Total Goods Purchased = SUM(Quantity)
+3. Return Transaction
+	-> Total Goods Return = SUM(Quantity)
+	-> Number Of Staff = COUNT(StaffID)
+4. Subscription Transction
+	-> Total Subscription Earning = SUM(BenefitPrice)
+	-> Number Of Subscriber = COUNT(CustomerID)
+
+Dimension
+=========
+CustomerDimension
+- CustomerCode -> PK (gak ada meaning bisnis, nanti digenerate oleh sistem secara auto increment)
+- CustomerID -> Business Key / Natural Key
+- CustomerName
+- CustomerDOB
+- CustomerGender -> Derived (Male -> M, Female -> F)
+- CustomerAddress -> changing
+- CustomerPhone -> changing
+
+GoodsDimension
+- GoodsCode
+- GoodsID
+- GoodsName
+- GoodsSellingPrice -> historical
+- GoodsBuyingPrice -> historical
+- ValidFrom
+- ValidTo
+
+StaffDimension
+- StaffCode
+- StaffID
+- StaffName
+- StaffDOB
+- StaffSalary -> historical
+- StaffGender -> Derived (Male -> M, Female -> F)
+- ValidFrom
+- ValidTo
+
+SupplierDimension
+- SupplierCode
+- SupplierID
+- SupplierName	
+- SupplierAddress -> changing
+- CityName
+
+BranchDimension
+- BranchCode
+- BranchID
+- BranchAddress -> changing
+- CityName
+
+BenefitDimension
+- BenefitCode
+- BenefitID
+- BenefitName
+- BenefitPrice -> Historical
+- ValidFrom
+- ValidTo
+
+1 Benefit1 100000 1/9/2022 5/9/2022
+2 Benefit1 200000 5/9/2022 10/9/2022
+3 Benefit1 300000 10/9/2022 NULL
+
+TimeDimension
+- TimeCode -> PK
+- Date
+- Day
+- Month
+- Quarter
+- Year
+
+Fact
+====
+SalesFact
+- GoodsCode
+- StaffCode
+- CustomerCode
+- BranchCode
+- TimeCode
+- Total Earning = SUM(Quantity * GoodsSellingPrice)
+- Total Goods Sold = SUM(Quantity)
+
+ReturnFact
+- GoodsCode
+- StaffCode
+- BranchCode
+- SupplierCode
+- TimeCode
+- Total Goods Return = SUM(Quantity)
+- Number Of Staff = COUNT(StaffID)
+
+PurchaseFact
+- GoodsCode
+- StaffCode
+- BranchCode
+- SupplierCode
+- TimeCode
+- Total Purchase Cost = SUM(Quantity * GoodsBuyingPrice)
+- Total Goods Purchased = SUM(Quantity)
+
+SubscriptionFact
+- CustomerCode
+- StaffCode
+- BenefitCode
+- TimeCode
+- Total Subscription Earning = SUM(BenefitPrice)
+- Number Of Subscriber = COUNT(CustomerID)
