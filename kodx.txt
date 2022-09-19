@@ -4,7 +4,7 @@ Measurement
 	-> Total Earning = SUM(Quantity * GoodsSellingPrice)
 	-> Total Goods Sold = SUM(Quantity)
 2. Purchase Transaction
-	-> Total Purchase Cost = SUM(Quantity * GoodsBuyingPrice)
+	-> Total Purchase Cost = SUM(Quantity * GoodsBuyingPrice)s
 	-> Total Goods Purchased = SUM(Quantity)
 3. Return Transaction
 	-> Total Goods Return = SUM(Quantity)

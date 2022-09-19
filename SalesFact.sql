@@ -9,13 +9,12 @@ IF EXISTS(
 )
 BEGIN
 SELECT 
-	GoodsCode,
+	MedicineCode,
 	StaffCode,
 	CustomerCode,
 	TimeCode,
-	BranchCode,
-	[Total Earning] = SUM (Quantity * GoodsSellingPrice),
-	[Total Goods Sold] = SUM (Quantity)
+    [Total Sales Earning] = SUM(Quantity * MedicineSellingPrice),
+    [Total Medicine Sold] = SUM(Quantity)
 FROM
 	VanMart..TrSalesHeader sh
 	JOIN VanMart..TrSalesDetail sd ON sh.SalesID = sd.SalesID
@@ -38,6 +37,7 @@ SELECT * FROM
 	JOIN VanMart..TrSalesDetail sd ON sh.SalesID = sd.SalesID
 
 END
+
 
 ELSE
 BEGIN 
